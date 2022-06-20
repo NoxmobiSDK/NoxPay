@@ -1,0 +1,6 @@
+framework module NPMaterialControl {
+  umbrella header "NPMaterialControl.h"
+
+  export *
+  module * { export * }
+}

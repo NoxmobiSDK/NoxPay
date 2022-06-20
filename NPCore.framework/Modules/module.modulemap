@@ -1,0 +1,6 @@
+framework module NPCore {
+  umbrella header "NPCore.h"
+
+  export *
+  module * { export * }
+}
