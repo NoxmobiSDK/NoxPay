@@ -57,8 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 启动IAP模块
 /// @param iapInfo IAP模块配置
-/// @param complete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
-+ (void)startIAPWithInfo:(NPIAPInfo *)iapInfo complete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))complete;
+/// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
+/// @param purchaseProcess 购买流程全景回调，status : NPInAppPurchase模块NPIAPStatus枚举值；error : 报错信息；extra:当status==20033时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
++ (void)startIAPWithInfo:(NPIAPInfo *)iapInfo
+            initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
+         purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
 /// 刷新token
 /// @param token access token
@@ -66,12 +69,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
-/// @param completation 购买动作结束。status : NPInAppPurchase模块NPIAPStatus枚举值；error : 报错信息；extra:当status==20033时，extra中可获取订单号,可以通过ek系列方法获取key。
-+ (void)purchase:(NSString *)placementID
-        complete:(void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))completation;
++ (void)purchase:(NSString *)placementID;
 
 /// 获取extra key，购买成功的订单号
 + (NSString *)ek_order_number;
+
+/// 获取extra key，购买成功的商品id
++ (NSString *)ek_product_id;
+
+/// 获取extra key，购买成功的商品名称
++ (NSString *)ek_product_name;
 
 /// 恢复购买
 /// @param complete 恢复购买回调：status=NPInAppPurchase模块NPIAPStatus枚举值；userInfo=订单用户信息数组；error=报错信息；

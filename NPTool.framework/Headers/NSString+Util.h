@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  源码无修改
  */
-+ (NSString *)hmac:(NSString *)plaintext withKey:(NSString *)key;
++ (NSString *)hmac:(NSString *)plaintext key:(NSString *)key;
 
 
 #pragma mark - 文件散列函数

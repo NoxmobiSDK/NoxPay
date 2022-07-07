@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <NPInAppPurchase/NoxPaymentError.h>
 #import <StoreKit/StoreKit.h>
 
 @class NoxPayIAP;
@@ -18,6 +17,7 @@ typedef NS_ENUM(NSUInteger, NPIAPStatus) {
     NPIAP_GeneratingOrder = 20020,  //生成订单中
 	NPIAP_GeneratingOrderFinished = 20021,  //订单生产完成
 	NPIAP_AddToPaymentQueue = 20022,//加入支付队列
+    NPIAP_RecoverPaidOrder = 20023,// 恢复了一笔已支付的订单，“正在为您恢复已支付的订单”
     NPIAP_Paying = 20030,           //支付中
 	NPIAP_PayingFinished = 20031,  //支付完成
     NPIAP_Verifying = 20032,        //订单验证中
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param extra 当status == NPIAP_Success，此字典中可获取该订单号，key可通过extra系列函数获取
 -(void)paymentManager:(NoxPayIAP*)manager
       didUpdateStatus:(NPIAPStatus)status
-                error:(NoxPaymentError* _Nullable)error
+                error:(NSError* _Nullable)error
                 extra:(NSDictionary *_Nullable)extra;
 
 @optional
@@ -99,7 +99,7 @@ shouldAddStorePayment:(SKPayment *)payment
 /// 获取商品列表
 /// @param produuctIDs 商品ID数组
 /// @param completation Apple返回的SKProduct对象数组
-+ (void)fetchProductList:(NSArray <NSString *> *)produuctIDs complete:(void(^)(NSArray<SKProduct*>* _Nullable  products))completation;
++ (void)fetchProductList:(NSArray <NSString *> *)produuctIDs complete:(void(^)(NSArray<SKProduct*>* _Nullable  products, NSError * _Nullable error))completation;
 
 /// 购买商品
 /// @param productID 购买的产品ID
@@ -123,7 +123,13 @@ shouldAddStorePayment:(SKPayment *)payment
 #pragma mark - Extra Key
 
 /// 用于获取extra字典中购买成功的订单号
-+ (NSString *)ek_order_number; 
++ (NSString *)ek_order_number;
+
+/// 获取extra key，购买成功的商品id
++ (NSString *)ek_product_id;
+
+/// 获取extra key，购买成功的商品名称
++ (NSString *)ek_product_name;
 
 #pragma mark - Event Broadcast
 /// 添加事件通知
