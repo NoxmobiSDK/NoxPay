@@ -63,6 +63,14 @@ NS_ASSUME_NONNULL_BEGIN
             initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
+/// 启动IAP模块并且同时初始化Firebase
+/// @param iapInfo IAP模块配置
+/// @param initComplete 启动IAP模块结果，isSuccess = 启动是否成功，error = 错误信息
+/// @param purchaseProcess 购买流程全景回调，status : NPInAppPurchase模块NPIAPStatus枚举值；error : 报错信息；extra:当status==20033时，extra中可获取订单号等交易和商品信息,可以通过ek系列方法获取key。
++ (void)startIAPAndFIRWithInfo:(NPIAPInfo *)iapInfo
+            initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
+         purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
+
 /// 刷新token
 /// @param token access token
 + (void)refreshAccessToken:(NSString *)token;

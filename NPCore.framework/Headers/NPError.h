@@ -14,137 +14,153 @@ typedef NS_ENUM(NSInteger, NPErrorCode) {
     /**
      * App id 不合法
      */
-    NPErrorAppIDInvalid = 100001,
+    NPErrorAppIDInvalid = 600001,
     
     /**
      * MIS配置请求失败
      */
-    NPErrorFailedToRequestMISConfig = 100002,
+    NPErrorFailedToRequestMISConfig = 600002,
     
     /**
      * SDK未初始化
      */
-    NPErrorSDKNotInit = 100003,
+    NPErrorSDKNotInit = 600003,
     
     /**
      * 展示位id不合法
      */
-    NPErrorPlacementIDInvalid = 100004,
+    NPErrorPlacementIDInvalid = 600004,
     
     /**
      * MIS未配置限时购买商品
      */
-    NPErrorNoTimeLimitedOffer = 100005,
+    NPErrorNoTimeLimitedOffer = 600005,
     
     /**
      * MIS未配置任何素材
      */
-    NPErrorNoMaterialConfig = 100006,
+    NPErrorNoMaterialConfig = 600006,
     
     /**
      * 内部数据转换失败
      */
-    NPErrorFailedToConvert = 100007,
+    NPErrorFailedToConvert = 600007,
     
     /**
      * AES解析配置为空
      */
-    NPErrorAESFailedToDecode = 100008,
+    NPErrorAESFailedToDecode = 600008,
     
     /**
      * NPIAPInfo传入参数不合法
      */
-    NPErrorIAPInfoInvalid = 100009,
+    NPErrorIAPInfoInvalid = 600009,
     
     /**
      * 素材模块：配置不合法
      */
-    NPErrorMaterialConfigInvalid = 200001,
+    NPErrorMaterialConfigInvalid = 700001,
     
     /**
      * 素材模块：配置转数组失败
      */
-    NPErrorMaterialConfigToArrayFailed = 200002,
+    NPErrorMaterialConfigToArrayFailed = 700002,
     
     /**
-     * 素材模块：置中的展示位无效
+     * 素材模块：配置中的展示位无效
      */
-    NPErrorMaterialConfigPidInvalid = 200003,
+    NPErrorMaterialConfigPidInvalid = 700003,
     
     /**
      * 素材模块：配置中没有需要下载的任务
      */
-    NPErrorMaterialConfigNoTask = 200004,
+    NPErrorMaterialConfigNoTask = 700004,
     
     /**
      * 素材模块：下载文件失败，无法保存该文件
      */
-    NPErrorMaterialDownloadFailed = 200005,
+    NPErrorMaterialDownloadFailed = 700005,
     
     /**
      * IAP：商品ID无效
      */
-    NPErrorProductIDInvalid = 300001,
+    NPErrorProductIDInvalid = 800001,
     
     /**
      * IAP：获取商品列表失败
      */
-    NPErrorFailedToFetchProductList = 300002,
+    NPErrorFailedToFetchProductList = 800002,
     
     /**
      * IAP：此设备已禁用内购功能
      */
-    NPErrorIAPWasDisable = 300003,
+    NPErrorIAPWasDisable = 800003,
     
     /**
      * IAP：交易失败
      */
-    NPErrorTransactionFailed = 300005,
+    NPErrorTransactionFailed = 800005,
     
     /**
      * IAP：Token失效
      */
-    NPErrorTokenInvalid = 300007,
+    NPErrorTokenInvalid = 800007,
     
     /**
      * IAP：验单时网络异常
      */
-    NPErrorNetworkExceptionWhenVerifyOrder = 300008,
+    NPErrorNetworkExceptionWhenVerifyOrder = 800008,
     
     /**
-     * IAP：恢复购买验证失败
+     * IAP：恢复购买验证失败(未启用，预留)
      */
-    NPErrorRestoreFailedToVerify = 300009,
+    NPErrorRestoreFailedToVerify = 800009,
     
     /**
      * IAP：创建订单失败
      */
-    NPErrorCreateOrderFailed = 300010,
+    NPErrorCreateOrderFailed = 800010,
     
     /**
-     * IAP：获取订单信息失败
+     * IAP：获取订单信息失败(未启用，预留)
      */
-    NPErrorFetchOrderFailed = 300011,
+    NPErrorFetchOrderFailed = 800011,
     
     /**
      * IAP特别错误：验单时网络断开
      */
-    NPErrorNetworkUnreachable = 390001,
+    NPErrorNetworkUnreachable = 890001,
     
     /**
      * Tool：AES键或值为空
      */
-    NPErrorAESKeyOrContentWasNil = 400001,
+    NPErrorAESKeyOrContentWasNil = 900001,
     
     /**
      * Tool：AES键长度不合法
      */
-    NPErrorAESKeyLengthInvalid = 400002,
+    NPErrorAESKeyLengthInvalid = 900002,
+    
+    /**
+     * Tool：Firebase SDK 尚未初始化
+     */
+    NPErrorFirebaseSDKNotInit = 900003,
+    
+    /**
+     * Tool：Remote Config SDK 未正确引入
+     */
+    NPErrorRCSDKImportedFailed = 900004,
+    
+    /**
+     * Tool：获取并激活RC配置失败
+     */
+    NPErrorRCFetchAndActivateFailed = 900005,
+    
 };
 
 @interface NPError : NSObject
 
-+ (NSError *)errorCode:(NPErrorCode)code reason:(NSString *)reason;
++ (NSError *)errorCode:(NSUInteger)code reason:(NSString *)reason;
 + (NSString *)domain;
 + (NSString *)domainServer;
 + (NSString *)domainNetwork;

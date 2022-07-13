@@ -11,24 +11,26 @@
 @class NoxPayIAP;
 
 typedef NS_ENUM(NSUInteger, NPIAPStatus) {
-    NPIAP_Start = 20000,            //开始购买流程
-    NPIAP_FetchingProduct = 20010,  //获取产品信息中
-    NPIAP_FetchProductFinished = 20011,  //获取产品信息完成
-    NPIAP_GeneratingOrder = 20020,  //生成订单中
+    NPIAP_Start = 20000,                    //开始购买流程
+    NPIAP_FetchingProduct = 20010,          //获取商品列表开始
+    NPIAP_FetchProductFinished = 20011,     //获取商品列表完成
+    NPIAP_GeneratingOrder = 20020,          //生成订单中
 	NPIAP_GeneratingOrderFinished = 20021,  //订单生产完成
-	NPIAP_AddToPaymentQueue = 20022,//加入支付队列
-    NPIAP_RecoverPaidOrder = 20023,// 恢复了一笔已支付的订单，“正在为您恢复已支付的订单”
-    NPIAP_Paying = 20030,           //支付中
-	NPIAP_PayingFinished = 20031,  //支付完成
-    NPIAP_Verifying = 20032,        //订单验证中
-	NPIAP_VerifyingFished = 20033,  //订单验证成功
-	NPIAP_VerifyingFailed = 20034, //支付成功,校验失败 属于丢单范畴
-    NPIAP_Success  = NPIAP_VerifyingFished, //支付成功
-    NPIAP_Cancel = 30001,           //用户取消支付
-    NPIAP_Failed = 30002,           //支付失败
+	NPIAP_AddToPaymentQueue = 20022,        //加入支付队列
+    NPIAP_RecoverPaidOrder = 20023,         //恢复了一笔已支付的订单，“正在为您恢复已支付的订单”
+    NPIAP_Paying = 20030,                   //支付中
+	NPIAP_PayingFinished = 20031,           //支付完成
+    NPIAP_Verifying = 20032,                //订单验证中
+	NPIAP_VerifyingFailed = 20033,          //支付成功,校验失败 属于丢单范畴
+    NPIAP_Success  = 20040,                 //支付成功
+    NPIAP_Cancel = 30001,                   //用户取消支付
+    NPIAP_Failed = 30002,                   //支付失败
+    NPIAP_Occupied = 30003,                 //IAP模块被占用中(正在处理其它订单)，SDK同时只能处理一单
+    NPIAP_NotInit = 30004,                  //IAP模块未初始化，请先初始化IAP
+    NPIAP_TransactionDeferred = 30020,      //交易推迟 官方解释是：交易已经加入队列，但是需要等待外部操作 主要用于儿童模式，需要询问家长同意。这种情况下不能关闭订单（完成交易），否则这类充值将无法处理。
 	
 	NPIAP_Restore_Start = 50001,
-	NPIAP_Restore_None = 50002, //暂无可恢复的购买项
+	NPIAP_Restore_None = 50002,             //暂无可恢复的购买项
     NPIAP_Restore_Cancel = 50003,
     NPIAP_Restore_Success = 50004,
     NPIAP_Restore_Failed = 50005,
@@ -139,6 +141,19 @@ shouldAddStorePayment:(SKPayment *)payment
 /// 移除事件通知
 /// @param observer 实现 NoxModuelPaymentEvents 协议的对象，不强制在dealloc中调用，在认为无需监听事件的时刻移除即可
 + (void)removePaymentEventObserver:(id<NoxModuelPaymentEvents>)observer;
+
+#pragma mark - Remote Config
+
+/// Remote Config管理实例
+@property (nonatomic, strong, class) NPRCManager *rc;
+
+/// 初始化Remote Config
+/// return RC初始化成功返回YES，反之返回NO
++ (BOOL)initializeRC:(void(^)(NSError * _Nullable error))complete;
+
+/// 先初始化Firebase再初始化RC
+/// return RC和FIrebase同时初始化成功返回YES，反之返回NO
++ (BOOL)initializeRCAndFirebase:(void(^)(NSError * _Nullable error))complete;
 
 @end
 
