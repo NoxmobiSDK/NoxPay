@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay"
-  spec.version      = "0.4.0"
+  spec.version      = "0.4.1"
   spec.summary      = "A aggregate payment SDK provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPay"
   spec.license      = "MIT"
@@ -31,6 +31,8 @@ Pod::Spec.new do |spec|
     ss.ios.vendored_frameworks = 'NPTool.framework'
     ss.dependency 'AFNetworking'
     ss.dependency 'GTMBase64'
+    ss.dependency 'Firebase/Analytics'
+    ss.dependency 'Firebase/RemoteConfig'
   end
 
   spec.subspec 'Core' do |ss|
@@ -45,14 +47,12 @@ Pod::Spec.new do |spec|
     ss.ios.vendored_frameworks = 'NPInAppPurchase.framework'
     ss.dependency 'YYCache'
     ss.dependency 'MJExtension'
-    ss.dependency 'NoxPay/Tool'
     ss.dependency 'NoxPay/Core'
   end
 
   spec.subspec 'MaterialControl' do |ss|
     ss.source_files = "NPMaterialControl.framework/Headers/*.{h}"
     ss.ios.vendored_frameworks = 'NPMaterialControl.framework'
-	ss.dependency 'NoxPay/Tool'
 	ss.dependency 'NoxPay/Core'
   end
 
