@@ -64,7 +64,7 @@ NSData   * aesDecryptData(NSData *data, NSData *key, NSError **error);
 
 #pragma mark - 公共基础
 
-NSString * safe_string(NSString *string);
+NSString * safe_text(NSString *string);
 
 /// 这两个方法调用前提是self是标准JSON
 - (NSDictionary *)toDict;

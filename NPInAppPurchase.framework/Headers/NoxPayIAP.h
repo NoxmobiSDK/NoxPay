@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 内购事件通知
 /// @param manager 管理对象 单例
 /// @param status 状态码 可以仅监听业务需要关注的
-/// @param error 错误对象 可根据错误码处理相关错误以及国际化文案，error.code = NPEC_TokenInvalid时需要外部更新accessToken
+/// @param error 错误对象 可根据错误码处理相关错误以及国际化文案
 /// @param extra 当status == NPIAP_Success，此字典中可获取该订单号，key可通过extra系列函数获取
 -(void)paymentManager:(NoxPayIAP*)manager
       didUpdateStatus:(NPIAPStatus)status
@@ -111,16 +111,15 @@ shouldAddStorePayment:(SKPayment *)payment
 + (void)restoreTransaction;
 
 /// 检测丢单问题
-/// @param validToken token必须为有效token SDK内部丢单验证逻辑不处理token过期问题
-+ (void)startProcessLostOrdersWithValidToken:(NSString*)validToken;
++ (void)startProcessLostOrders;
 
 /// 获取交易流水
 /// @param orderStatus 订单状态，nil返回全部状态
 /// @param type 支付方式 nil.全部方式  1.微信, 2.google, 3.apple, 4.支付宝
 /// @param offset offset
 /// @param size size
-/// @param resultBlock error = nil 为成功, error.code=10402需刷新accessToken
-+ (void)getOrderInfo:(NSString * _Nullable)orderStatus clientType:(NSString * _Nullable)type unionId:(NSString *)uid accessToken:(NSString *)token offset:(NSInteger)offset size:(NSInteger)size resultBlock:(void (^)(NSDictionary * _Nullable, NSError * _Nullable))resultBlock;
+/// @param resultBlock error = nil 为成功
++ (void)getOrderInfo:(NSString * _Nullable)orderStatus clientType:(NSString * _Nullable)type unionId:(NSString *)uid offset:(NSInteger)offset size:(NSInteger)size resultBlock:(void (^)(NSDictionary * _Nullable, NSError * _Nullable))resultBlock;
 
 #pragma mark - Extra Key
 

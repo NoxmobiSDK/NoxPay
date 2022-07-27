@@ -71,10 +71,6 @@ NS_ASSUME_NONNULL_BEGIN
             initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
-/// 刷新token
-/// @param token access token
-+ (void)refreshAccessToken:(NSString *)token;
-
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
 + (void)purchase:(NSString *)placementID;
@@ -92,9 +88,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param complete 恢复购买回调：status=NPInAppPurchase模块NPIAPStatus枚举值；userInfo=订单用户信息数组；error=报错信息；
 + (void)restore:(void(^)(NSUInteger status, NSArray *userInfo, NSError *error))complete;
 
-// 处理丢单(不建议主动调用，SDK内部已自动处理丢单问题)
+/// 处理丢单(不建议开发者主动调用，SDK内部会自动处理丢单问题)
++ (void)handleMissingOrders;
+
+
+#pragma mark - DEPRECATED
+
+/// 刷新token
+/// @param token access token
++ (void)refreshAccessToken:(NSString *)token __attribute__((deprecated("This method is no longer used.")));
+
+// 处理丢单
 /// @param token token必须为有效token SDK内部丢单验证逻辑不处理token过期问题
-+ (void)handleMissingOrdersWithAccessToken:(NSString *)token;
++ (void)handleMissingOrdersWithAccessToken:(NSString *)token __attribute__((deprecated("This method is no longer used.")));
 
 @end
 

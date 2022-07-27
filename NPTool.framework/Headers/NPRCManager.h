@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, NPRCFetchStatus) {
     NPRCFetchStatusError
 };
 
-@interface NPRCManager : NPError
+@interface NPRCManager : NSObject
 
 /// 初始化Firebase并初始化一个NoxRCManager对象
 + (instancetype)managerAndInitFirebase:(nullable NPRCFetchFailed)handler;

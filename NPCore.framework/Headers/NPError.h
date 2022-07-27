@@ -102,11 +102,6 @@ typedef NS_ENUM(NSInteger, NPErrorCode) {
     NPErrorTransactionFailed = 800005,
     
     /**
-     * IAP：Token失效
-     */
-    NPErrorTokenInvalid = 800007,
-    
-    /**
      * IAP：验单时网络异常
      */
     NPErrorNetworkExceptionWhenVerifyOrder = 800008,
