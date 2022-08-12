@@ -75,6 +75,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param placementID 要购买的商品所在的展示位ID
 + (void)purchase:(NSString *)placementID;
 
+
+/// 购买商品
+/// @param placementID 要购买的商品所在的展示位ID
+/// @param userInfo 用户自定义透传字段，userInfo与本次交易的生命周期相同。请注意：key必须为NSString，value必须是NSString或NSNumber
++ (void)purchase:(NSString *)placementID userInfo:(nonnull NSDictionary <NSString *, id<NSCopying, NSSecureCoding>>*)userInfo;
+
 /// 获取extra key，购买成功的订单号
 + (NSString *)ek_order_number;
 
@@ -83,6 +89,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取extra key，购买成功的商品名称
 + (NSString *)ek_product_name;
+
+/// 获取extra key，展示位id
++ (NSString *)ek_placement_id;
+
+/// 获取extra key，用户自定义透传字段
++ (NSString *)ek_user_info;
 
 /// 恢复购买
 /// @param complete 恢复购买回调：status=NPInAppPurchase模块NPIAPStatus枚举值；userInfo=订单用户信息数组；error=报错信息；

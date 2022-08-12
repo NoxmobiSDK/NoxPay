@@ -132,6 +132,12 @@ shouldAddStorePayment:(SKPayment *)payment
 /// 获取extra key，购买成功的商品名称
 + (NSString *)ek_product_name;
 
+/// 获取extra key，展示位id
++ (NSString *)ek_placement_id;
+
+/// 获取extra key，用户自定义透传字段
++ (NSString *)ek_user_info;
+
 #pragma mark - Event Broadcast
 /// 添加事件通知
 /// @param observer 实现 NoxModuelPaymentEvents 协议的对象，无需传递弱引用
