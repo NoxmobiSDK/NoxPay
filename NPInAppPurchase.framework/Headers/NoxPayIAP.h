@@ -91,6 +91,12 @@ shouldAddStorePayment:(SKPayment *)payment
 
 @interface NoxPayIAP : NSObject
 
+/// 当前支付队列中的交易（不推荐使用）
+@property (nonatomic, strong, readonly) NSArray<SKPaymentTransaction *> *transactions;
+
+/// 获取单例对象
++ (NoxPayIAP*)shared;
+
 /// 设置开发环境
 /// @param enviroument 传入一个枚举值，默认 NPIAP_PRODUCTION
 + (void)setupEvn:(NPIAPEnviroument)enviroument;
