@@ -71,6 +71,14 @@ NS_ASSUME_NONNULL_BEGIN
             initComplete:(nullable void(^)(BOOL isSuccess, NSError *_Nullable error))initComplete
          purchaseProcess:(nullable void(^)(NSUInteger status, NSError *_Nullable error, NSDictionary *extra))purchaseProcess;
 
+/// 获取商品信息
+/// @param placementId  展示位id
++ (nullable NSDictionary *)getPlacementInfo:(NSString *)placementId;
+
+/// 获取商品列表
+/// @param groupId  展示位的分组id
++ (nullable NSArray *)getPlacementInfos:(NSString *)groupId;
+
 /// 购买商品
 /// @param placementID 要购买的商品所在的展示位ID
 + (void)purchase:(NSString *)placementID;
