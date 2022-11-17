@@ -111,6 +111,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 处理丢单(不建议开发者主动调用，SDK内部会自动处理丢单问题)
 + (void)handleMissingOrders;
 
+/// 刷新用户信息
++ (void)refreshUserInfo:(NSString *)userId;
+
 
 #pragma mark - DEPRECATED
 

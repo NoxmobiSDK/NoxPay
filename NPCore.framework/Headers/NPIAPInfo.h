@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NPIAPInfo : NSObject
 
-@property (nonatomic, copy, readonly) NSString *projectID;// 智勇那边生成的项目id
-@property (nonatomic, copy, readonly) NSString *uid;
+@property (nonatomic, copy) NSString *projectID;// 智勇那边生成的项目id
+@property (nonatomic, copy) NSString *uid;
 
 /// @param projectID 项目ID 中台生成
 /// @param uid 用户id 非强制登录初始化可为空 登录态不传递该值有可能会导致丢单问题
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - DEPRECATED
 
-@property (nonatomic, copy, readonly) NSString *accessToken __attribute__((deprecated("This property is no longer used.")));
+@property (nonatomic, copy) NSString *accessToken __attribute__((deprecated("This property is no longer used.")));
 
 /// @param projectID 项目ID 中台生成
 /// @param uid 用户id 非强制登录初始化可为空 登录态不传递该值有可能会导致丢单问题
