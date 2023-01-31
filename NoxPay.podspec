@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "NoxPay"
-  spec.version      = "0.7.2"
+  spec.version      = "0.7.3"
   spec.summary      = "A aggregate payment SDK provided Nox."
   spec.homepage     = "https://github.com/NoxmobiSDK/NoxPay"
   spec.license      = "MIT"
