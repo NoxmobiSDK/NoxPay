@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, NPMode) {
 
 @property (nonatomic, copy, readonly) NSString *appId;// mis生成的app id
 @property (nonatomic, assign, readonly) NPMode sdkMode;
+@property (nonatomic, assign, readonly) BOOL autoRestoreEnable;
 
 
 /// 便捷构造器
@@ -25,7 +26,7 @@ typedef NS_ENUM(NSUInteger, NPMode) {
 /// @param mode 枚举值二选一：NPModeRelease/NPModeDebug
 + (instancetype)infoWithAppId:(NSString *)appId sdkMode:(NPMode)mode;
                       
-
++ (instancetype)infoWithAppIdAndAutoRestore:(NSString *)appId sdkMode:(NPMode)mode autoRestoreEnable:(BOOL)autoRestore;
 
 @end
 
